@@ -46,7 +46,7 @@ The plugin will automatically create the remaining folders as it runs.
 
 ### 2. Run the plugin
 
-Launch via **Plugins → Fiji Image Processor**. A dialog will appear prompting you to:
+Launch via **Plugins → Run Image Processor**. A dialog will appear prompting you to:
 
 - Select your working directory
 - Choose which pipeline steps to run
