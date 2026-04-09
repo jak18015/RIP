@@ -1,4 +1,4 @@
-# Fiji Image Processor
+# Routine-Image-Processor (RIP)
 
 An ImageJ/Fiji plugin for automated batch processing of microscopy images. The plugin runs a full pipeline — converting raw microscopy files, generating projections, cropping, applying LUTs, and exporting RGB images — through a simple guided interface.\
 \
