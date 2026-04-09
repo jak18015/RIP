@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>FijiImageProcessor</artifactId>
+    <artifactId>RoutineImageProcessor</artifactId>
 
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -53,7 +53,7 @@
     </dependencies>
 
     <build>
-        <finalName>Process_Images-${project.version}</finalName>
+        <finalName>RIP-${project.version}</finalName>
 
         <plugins>
             <plugin>
