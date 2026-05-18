@@ -1,6 +1,6 @@
 ![Routine-Image-Processor Banner](assets/my-banner.png)
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=100&color=F75C7E&vCenter=true&width=500&lines=Routine+image+processor;Convert;Project;Crop;Color;Export;Present!)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&duration=1500&pause=500&color=F75C7E&vCenter=true&width=500&lines=Routine+image+processor;Convert;Project;Crop;Color;Export;Present!)](https://git.io/typing-svg)
 
 # Routine-Image-Processor (RIP)
 
