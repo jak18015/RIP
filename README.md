@@ -1,5 +1,7 @@
 ![Routine-Image-Processor Banner](assets/my-banner.png)
 
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&pause=1000&color=F75C7E&vCenter=true&width=435&lines=Hey+there!+I'm+Blaze;Full-Stack+Developer;Always+learning+new+things)](https://git.io/typing-svg)
+
 # Routine-Image-Processor (RIP)
 
 An ImageJ/Fiji plugin for automated batch processing of microscopy images. The plugin runs a full pipeline — converting raw microscopy files, generating projections, cropping, applying LUTs, and exporting RGB images — through a simple guided interface.
