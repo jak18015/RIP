@@ -31,7 +31,7 @@ public class BatchConverter {
         });
 
         if (files == null || files.length == 0) {
-            IJ.error("No .nd2 files found in: " + inputDir);
+            IJ.error("No compatible image files found in: " + inputDir);
             return;
         }
         for (File file : files) {
@@ -42,8 +42,13 @@ public class BatchConverter {
                 options.setAutoscale(true);
 
                 ImagePlus[] imps = BF.openImagePlus(options);
+                String fileName = file.getName(); // Extracted for readability
+
                 for (ImagePlus imp : imps) {
-                    String savePath = outputDir + file.getName().replace(".nd2", ".tif");
+                    // Dynamically strip whatever extension exists, then append .tif
+                    String nameWithoutExt = fileName.substring(0, fileName.lastIndexOf("."));
+                    String savePath = outputDir + nameWithoutExt + ".tif";
+
                     IJ.saveAs(imp, "Tiff", savePath);
                     imp.close();
                 }
