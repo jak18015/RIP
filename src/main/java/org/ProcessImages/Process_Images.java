@@ -21,31 +21,56 @@ public class Process_Images implements PlugIn {
         // if canceled
         if (settings.canceled) return;
 
-        // Get the working directory
+        // Get the working directory and ensure trailing separator
         String root = settings.dir;
-        // Add a trailing forward slash if missing from the root
         if (!root.endsWith(File.separator)) root += File.separator;
 
-        // If Batch conversion was checked
-        if (settings.isConverting)
-            new BatchConverter().processFiles(root + "raw/", root + "tif/");
+        // Track where the latest processed images are located
+        String currentInputDir = root + "raw/";
 
-        // If Interactive projection was checked
-        if (settings.isProjecting)
-            new InteractiveProjection().project(root + "tif/", root + "prj/");
-
-        // If cropping was checked
-        if (settings.isCropping) {
-            DirChecker.check(root + "crop/roi/"); // Pre-check the nested folder
-            new StandardCrop().crop(root + "prj/", root + "crop/");
+        // 1. Batch Conversion
+        if (settings.isConverting) {
+            String nextOutputDir = root + "tif/";
+            DirChecker.check(currentInputDir);
+            DirChecker.check(nextOutputDir);
+            new BatchConverter().processFiles(currentInputDir, nextOutputDir);
+            currentInputDir = nextOutputDir;
+        } else {
+            // If skipped, assume the user already has TIFs ready in the tif/ folder
+            currentInputDir = root + "tif/";
         }
 
-        // if setting the LUTs was checked
-        if (settings.isLutting)
-            new SetLuts().set(root + "crop/");
+        // 2. Interactive Projection
+        if (settings.isProjecting) {
+            String nextOutputDir = root + "prj/";
+            DirChecker.check(currentInputDir);
+            DirChecker.check(nextOutputDir);
+            new InteractiveProjection().project(currentInputDir, nextOutputDir);
+            currentInputDir = nextOutputDir;
+        }
 
-        // if splitting to RGB was checked
-        if (settings.isSplitting)
-            new SplitToRGB().split(root + "crop/", root + "rgb/");
+        // 3. Cropping
+        if (settings.isCropping) {
+            String nextOutputDir = root + "crop/";
+            DirChecker.check(currentInputDir);
+            DirChecker.check(nextOutputDir);
+            DirChecker.check(nextOutputDir + "roi/"); // Pre-check the nested folder
+            new StandardCrop().crop(currentInputDir, nextOutputDir);
+            currentInputDir = nextOutputDir;
+        }
+
+        // 4. Set LUTs
+        if (settings.isLutting) {
+            DirChecker.check(currentInputDir);
+            new SetLuts().set(currentInputDir);
+        }
+
+        // 5. Split to RGB
+        if (settings.isSplitting) {
+            String nextOutputDir = root + "rgb/";
+            DirChecker.check(currentInputDir);
+            DirChecker.check(nextOutputDir);
+            new SplitToRGB().split(currentInputDir, nextOutputDir, settings);
+        }
     }
 }
